@@ -23,7 +23,9 @@ public class ConfiguratorDbContext : DbContext
     public static string DbConnectionString = "Timeout=180;Include Error Detail=true;Persist Security Info=True;Host=localhost;CommandTimeout=300;Username=postgres;Password=password;Database=configurator;Port=5332;SearchPath=ct,public";
 
     public DbSet<GearSpec> GearSpecs { get; set; }
-
+    public DbSet<WormGearOperator> WormGearOperators { get; set; }
+    public DbSet<SamboGear> SamboGears { get; set; }
+    public DbSet<SamboGearMountingBase> SamboGearMountingBases { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder); // Always call the base method last
