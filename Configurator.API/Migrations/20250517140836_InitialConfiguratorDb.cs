@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -6,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Configurator.API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialConfiguratorCreate : Migration
+    public partial class InitialConfiguratorDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,18 +16,22 @@ namespace Configurator.API.Migrations
                 name: "configurator");
 
             migrationBuilder.CreateTable(
-                name: "GearSpecs",
+                name: "gearspecs",
                 schema: "configurator",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    SpecCode = table.Column<string>(type: "text", nullable: false)
+                    description = table.Column<string>(type: "text", nullable: false),
+                    speccode = table.Column<string>(type: "text", nullable: false),
+                    createdbyid = table.Column<int>(type: "integer", nullable: false),
+                    createddate = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    modifiedbyid = table.Column<int>(type: "integer", nullable: false),
+                    modifieddate = table.Column<DateTime>(type: "timestamp", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GearSpecs", x => x.Id);
+                    table.PrimaryKey("pk_gearspecs", x => x.id);
                 });
         }
 
@@ -34,7 +39,7 @@ namespace Configurator.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GearSpecs",
+                name: "gearspecs",
                 schema: "configurator");
         }
     }

@@ -1,8 +1,7 @@
-﻿namespace Configurator.API.DomainObjects
+﻿namespace Common.DomainObjects
 {
-    public class GearSpec
+    public class GearSpec : IntIdentityBase
     {
-        public int Id { get; set; }
         public string Description { get; set; }
         public string SpecCode { get; set; }
     }
